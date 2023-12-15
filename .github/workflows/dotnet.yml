@@ -105,5 +105,5 @@ jobs:
         
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-prod'
+        app-name: 'zfwyj7jpgw3hs-prod'
         images: $registryName/$repositoryName:$tag
