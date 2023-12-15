@@ -64,7 +64,7 @@ jobs:
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'zfwyj7jpgw3hs-dev'
-          images: $registryName/$repositoryName:$tag
+          images: zfwyj7jpgw3hsmpnpreg.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-to-test:
   
@@ -85,7 +85,7 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'zfwyj7jpgw3hs-test'
-        images: $registryName/$repositoryName:$tag
+        images: zfwyj7jpgw3hsmpnpreg.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-to-prod:
   
@@ -106,4 +106,4 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'zfwyj7jpgw3hs-prod'
-        images: $registryName/$repositoryName:$tag
+        images: zfwyj7jpgw3hsmpnpreg.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
