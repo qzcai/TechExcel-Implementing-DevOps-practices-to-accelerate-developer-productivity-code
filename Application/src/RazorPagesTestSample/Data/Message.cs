@@ -12,7 +12,7 @@ namespace RazorPagesTestSample.Data
         [StringLength(250, ErrorMessage = "There's a 250 character limit on messages. Please shorten your message.")]
         public string Text { get; set; }
 
-        // trigger build
+        // trigger build #2
     }
     #endregion
 }
