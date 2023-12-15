@@ -33,7 +33,7 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal ./Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj
 
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -48,3 +48,20 @@ jobs:
         run: docker build -t $registryName/$repositoryName:$tag --build-arg build_version=$tag $dockerFolderPath
       - name: Docker push
         run: docker push $registryName/$repositoryName:$tag
+
+  deploy-to-dev:
+    runs-on: ubuntu-latest
+    needs: dockerBuildPush
+    environment:
+      name: dev
+      url: https://zfwyj7jpgw3hs-dev.azurewebsites.net/
+    steps:
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'zfwyj7jpgw3hs-dev'
+          images: $registryName/$repositoryName:$tag
